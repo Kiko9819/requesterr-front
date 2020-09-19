@@ -1,0 +1,22 @@
+name: Build master and develop branches
+on: 
+  push:
+    branches: 
+      - master
+      - develop
+jobs:
+  build:
+    name: Push Docker Image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+      - name: Build and Push to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          repository: kris9819/requesterr-front
+          tag_with_ref: true
