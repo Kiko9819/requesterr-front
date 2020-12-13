@@ -1,0 +1,54 @@
+<!-- TODO: Fix style attributes -->
+<nz-card style="width:300px; margin: 5rem auto;">
+  <div style="text-align:center;">
+    <nz-avatar [nzShape]="'square'" [nzSize]="64" nzIcon="user" style="margin: auto"></nz-avatar>
+  </div>
+
+  <h2 style="text-align:center;margin-top: 1rem" nz-typography>LOGIN</h2>
+
+  <form nz-form [formGroup]="formGroup" class="login-form" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-control nzHasFeedback [nzErrorTip]="emailErrorTpl">
+
+        <nz-input-group nzPrefixIcon="mail">
+          <input type="text" nz-input formControlName="email" placeholder="Email"/>
+
+          <ng-template #emailErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('email')">
+              This input is not valid email
+            </ng-container>
+            <ng-container *ngIf="control.hasError('required')">
+              Please input your E-mail!
+            </ng-container>
+          </ng-template>
+        </nz-input-group>
+
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzHasFeedback [nzErrorTip]="passwordErrorTpl">
+
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="password" placeholder="Password"/>
+
+          <!-- TODO: Rethink how you can show errors in a component instead of template-->
+          <ng-template #passwordErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              Please input your Password!
+            </ng-container>
+          </ng-template>
+        </nz-input-group>
+
+      </nz-form-control>
+    </nz-form-item>
+
+    <div style="text-align: center">
+      <button nz-button class="login-form-button login-form-margin" [nzLoading]="loading$ | async" [nzType]="'primary'">
+        Log in
+      </button>
+      Or <a> register now! </a>
+    </div>
+
+  </form>
+
+</nz-card>
