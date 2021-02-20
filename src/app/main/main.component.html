@@ -1,0 +1,65 @@
+<nz-layout>
+  <nz-sider nzCollapsible nzWidth="200px">
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+
+      <li nz-menu-item>
+        <i nz-icon nzType="dashboard" nzTheme="outline" nzIcon="dashboard"></i>
+        <a [routerLink]="['/', 'dashboard']">Dashboard</a>
+      </li>
+      <li nz-submenu nzTitle="Users" nzIcon="user">
+        <ul>
+          <li nz-menu-item>List</li>
+          <li nz-menu-item>Create New</li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Requests" nzIcon="team">
+        <ul>
+          <li nz-menu-item>Sent</li>
+          <li nz-menu-item>Received</li>
+          <li nz-menu-item>Pending</li>
+        </ul>
+      </li>
+      <li nz-menu-item>
+        <i nz-icon nzType="file"></i>
+        <span>File</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+
+      <ul nz-menu nzTheme="light" nzMode="horizontal" style="display: flex;">
+        <li nz-menu-item style="margin-left: auto;">
+          <ng-container>
+            <div nz-dropdown [nzDropdownMenu]="menu" [nzPlacement]="'bottomRight'">
+              <nz-avatar nzIcon="user"></nz-avatar>
+            </div>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu>
+                <li nz-menu-item (click)="logout()">
+                  <i nz-icon nzType="profile" nzTheme="outline"></i>
+                  <span>My Profile</span>
+                </li>
+                <li nz-menu-divider></li>
+                <li nz-menu-item (click)="logout()">
+                  <i nz-icon nzType="logout" nzTheme="outline"></i>
+                  <span>Logout</span>
+                </li>
+              </ul>
+            </nz-dropdown-menu>
+          </ng-container>
+        </li>
+      </ul>
+    </nz-header>
+    <nz-content>
+      <nz-breadcrumb>
+        <nz-breadcrumb-item>Dashboard</nz-breadcrumb-item>
+      </nz-breadcrumb>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+  </nz-layout>
+</nz-layout>
