@@ -2,7 +2,10 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { Tokens } from 'src/app/shared/enums/tokens.enum';
 import { environment } from '../../../environments/environment';
+import { IUserLoginDTO } from '../models/IUserLoginDTO.interface';
+import { IUserLoginResponseDTO } from '../models/IUserLoginResponseDTO.interface';
 import { AuthService } from './auth.service';
 import { AuthState } from './auth.state';
 
@@ -22,11 +25,9 @@ export class AuthApiService {
     ) {
   }
 
-  // TODO: FIX ANY
-  login$(user: any): Observable<any> {
-    console.log(this.signInUrl);
-    return this.httpClient.post(this.signInUrl, {email: user.email, password: user.password}).pipe(
-      tap((response: any) => {
+  login$(user: IUserLoginDTO): Observable<IUserLoginResponseDTO> {
+    return this.httpClient.post<IUserLoginResponseDTO>(this.signInUrl, {email: user.email, password: user.password}).pipe(
+      tap((response: IUserLoginResponseDTO) => {
         this.authService.accessToken = response.access_token;
 				this.authService.refreshToken = response.refresh_token;
       }),
@@ -43,7 +44,7 @@ export class AuthApiService {
   // make any => login response
   refreshToken$(): Observable<any> {
 		const body = new FormData();
-		body.append('refresh_token', this.authService.refreshToken);
+		body.append(Tokens.Refresh, this.authService.refreshToken);
 
 		return this.httpClient.post<any>(this.signInUrl, body);
   }
