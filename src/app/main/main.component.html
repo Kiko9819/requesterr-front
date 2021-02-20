@@ -3,21 +3,20 @@
     <div class="logo"></div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
 
-      <li nz-menu-item>
+      <li nz-menu-item nzMatchRouter>
         <i nz-icon nzType="dashboard" nzTheme="outline" nzIcon="dashboard"></i>
         <a [routerLink]="['/', 'dashboard']">Dashboard</a>
       </li>
-      <li nz-submenu nzTitle="Users" nzIcon="user">
+      <li nz-submenu nzTitle="Users" nzIcon="user" nzMatchRouter>
         <ul>
+          <li nz-menu-item>Create</li>
           <li nz-menu-item>List</li>
-          <li nz-menu-item>Create New</li>
         </ul>
       </li>
-      <li nz-submenu nzTitle="Requests" nzIcon="team">
+      <li nz-submenu nzTitle="Requests" nzIcon="team" nzMatchRouter>
         <ul>
-          <li nz-menu-item>Sent</li>
-          <li nz-menu-item>Received</li>
-          <li nz-menu-item>Pending</li>
+          <li nz-menu-item>Create</li>
+          <li nz-menu-item>List</li>
         </ul>
       </li>
       <li nz-menu-item>
