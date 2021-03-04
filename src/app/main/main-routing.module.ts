@@ -14,6 +14,10 @@ const routes: Routes = [
         component: DashboardComponent
       },
       {
+        path: "my-profile",
+        loadChildren: () => import('./my-profile/my-profile.module').then(m => m.MyProfileModule)
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: "/dashboard"
