@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { IUserLoginResponseDTO } from '../models/IUserLoginResponseDTO.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class AuthState {
     this.loading$.next(isLoading);
   }
 
-  setUser(user: any): void {
+  setUser(user: IUserLoginResponseDTO): void {
     this.user$.next(user);
   }
 

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { tap } from 'rxjs/operators';
+import { IUserLoginDTO } from '../models/IUserLoginDTO.interface';
+import { IUserLoginResponseDTO } from '../models/IUserLoginResponseDTO.interface';
 import { AuthApiService } from './auth-api.service';
 import { AuthService } from './auth.service';
 import { AuthState } from './auth.state';
@@ -20,17 +22,16 @@ export class AuthFacade {
     this.loading$ = this.authState.isLoading$();
   }
 
-  // TODO: FIX ANY
-  login$(user: any): Observable<any> {
+  login$(user: IUserLoginDTO): Observable<IUserLoginResponseDTO> {
     this.authState.setLoading(true);
 
     return this.authApiService.login$(user).pipe(
-      tap((user) => this.authState.setUser(user)),
+      tap((loginResponse: IUserLoginResponseDTO) => this.authState.setUser(loginResponse)),
       finalize(() => this.authState.setLoading(false))
     );
   }
 
-  logout$(): Observable<any> {
+  logout$(): Observable<void> {
     return this.authApiService.logout$();
   }
 
@@ -53,5 +54,4 @@ export class AuthFacade {
   redirectToMain(): void {
     this.authService.navigateToMain();
   }
-
 }

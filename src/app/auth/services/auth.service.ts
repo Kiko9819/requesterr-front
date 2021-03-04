@@ -1,11 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { JwtHelperService } from "@auth0/angular-jwt";
-
-enum Tokens {
-    Access = "access_token",
-    Refresh = "refresh_token"
-};
+import { Shared } from "src/app/shared/enums/shared.enum";
+import { Tokens } from "src/app/shared/enums/tokens.enum";
 
 @Injectable({
     providedIn: 'root'
@@ -64,15 +61,15 @@ export class AuthService {
     }
     
     setRequestedPath(): void {
-		sessionStorage.setItem("request_pathname", location.pathname);
+		sessionStorage.setItem(Shared.RequestPathName, location.pathname);
     }
     
     getRequestedPath(): string {
-		return sessionStorage.getItem("request_pathname") as string;
+		return sessionStorage.getItem(Shared.RequestPathName) as string;
     }
 
     removeRequestedPath(): void {
-		sessionStorage.removeItem("request_pathname");
+		sessionStorage.removeItem(Shared.RequestPathName);
     }
 
     navigateToLogin(): void {
