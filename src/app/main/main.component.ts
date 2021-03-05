@@ -8,6 +8,7 @@ import { AuthFacade } from '../auth/services/auth.facade';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  isCollapsed: boolean;
 
   constructor(private authFacade: AuthFacade) { }
 
@@ -16,7 +17,6 @@ export class MainComponent implements OnInit {
 
   logout(): void {
     this.authFacade.logout$().pipe(take(1)).subscribe();
-    console.log("Will call the facade from here some day")
   }
 
 }
