@@ -5,7 +5,7 @@ import { MyProfileRoutingModule } from './my-profile-routing.module';
 import { MyProfileFormComponent } from './components/my-profile-form/my-profile-form.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NzInputModule, NzButtonModule, NzTypographyModule } from 'ng-zorro-antd';
+import { NzInputModule, NzButtonModule, NzTypographyModule, NzDividerModule } from 'ng-zorro-antd';
 
 @NgModule({
   declarations: [MyProfileComponent, MyProfileFormComponent],
@@ -15,6 +15,7 @@ import { NzInputModule, NzButtonModule, NzTypographyModule } from 'ng-zorro-antd
     NzInputModule,
     NzButtonModule,
     NzTypographyModule,
+    NzDividerModule,
     ReactiveFormsModule,
     MyProfileRoutingModule
   ]
