@@ -7,15 +7,23 @@ const routes: Routes = [
   {
     path: "",
     component: MainComponent,
-
+    data: {
+      title: "Home"
+    },
     children: [
       {
         path: "dashboard",
-        component: DashboardComponent
+        component: DashboardComponent,
+        data: {
+          title: "Dashboard"
+        }
       },
       {
         path: "my-profile",
-        loadChildren: () => import('./my-profile/my-profile.module').then(m => m.MyProfileModule)
+        loadChildren: () => import('./my-profile/my-profile.module').then(m => m.MyProfileModule),
+        data: {
+          title: "My Profile"
+        }
       },
       {
         path: '',
