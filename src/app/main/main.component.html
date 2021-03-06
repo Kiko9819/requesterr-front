@@ -1,11 +1,11 @@
 <nz-layout>
-  <nz-sider nzCollapsible nzWidth="200px">
+  <nz-sider [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" nzCollapsible nzWidth="200px">
     <div class="logo"></div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
 
       <li nz-menu-item nzMatchRouter>
         <i nz-icon nzType="dashboard" nzTheme="outline" nzIcon="dashboard"></i>
-        <a [routerLink]="['/', 'dashboard']">Dashboard</a>
+        <span [routerLink]="['/', 'dashboard']">Dashboard</span>
       </li>
       <li nz-submenu nzTitle="Users" nzIcon="user" nzMatchRouter>
         <ul>
@@ -26,9 +26,11 @@
     </ul>
   </nz-sider>
   <nz-layout>
-    <nz-header>
+    <nz-header style="display: flex; justify-content: space-between;">
 
+      <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed"></i>
       <ul nz-menu nzTheme="light" nzMode="horizontal" style="display: flex;">
+        
         <li nz-menu-item style="margin-left: auto;">
           <ng-container>
             <div nz-dropdown [nzDropdownMenu]="menu" [nzPlacement]="'bottomRight'">
@@ -36,7 +38,7 @@
             </div>
             <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul nz-menu>
-                <li nz-menu-item (click)="logout()">
+                <li nz-menu-item [routerLink]="['/', 'my-profile']">
                   <i nz-icon nzType="profile" nzTheme="outline"></i>
                   <span>My Profile</span>
                 </li>
@@ -52,9 +54,8 @@
       </ul>
     </nz-header>
     <nz-content>
-      <nz-breadcrumb>
-        <nz-breadcrumb-item>Dashboard</nz-breadcrumb-item>
-      </nz-breadcrumb>
+      <nz-page-header style="padding-left: 0;" [nzTitle]="title"></nz-page-header>
+
       <div class="inner-content">
         <router-outlet></router-outlet>
       </div>

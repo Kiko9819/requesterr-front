@@ -1,0 +1,21 @@
+<form nz-form [formGroup]="formGroup" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label  nzRequired nzFor="email">E-mail</nz-form-label>
+    <nz-form-control [nzSm]="12" [nzMd]="12" [nzLg]="10" [nzXl]="8" [nzXXl]="6"
+      nzErrorTip="The input is not valid E-mail!">
+      <input nz-input formControlName="email" id="email" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="name" nzRequired>Name</nz-form-label>
+    <nz-form-control [nzSm]="12" [nzMd]="12" [nzLg]="10" [nzXl]="8" [nzXXl]="6" [nzXs]="24"
+      nzErrorTip="Please input your password!">
+      <input nz-input type="name" id="name" formControlName="name" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item nz-row>
+    <nz-form-control [nzSm]="{ span: 14 }" [nzXs]="{ span: 14, offset: 0 }" [nzLg]="{ span: 14 }">
+      <button nz-button nzType="primary" [nzLoading]="loading$ | async">Update</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
