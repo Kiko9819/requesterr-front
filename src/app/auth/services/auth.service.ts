@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { appConstants } from "src/app/app-constants";
 import { Shared } from "src/app/shared/enums/shared.enum";
 import { Tokens } from "src/app/shared/enums/tokens.enum";
 
@@ -88,5 +89,8 @@ export class AuthService {
 		this.router.navigate(['/']);
 	}
 
+	generateTokenFromClientIdAndSecret(): string {
+		return btoa(appConstants.CLIENT_ID_SECRET);
+	}
 
 }
