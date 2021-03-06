@@ -49,7 +49,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 catchError(() => {
                   this.refreshTokenInProgress = false;
                   this.authService.setRequestedPath();
-                  this.authService.clearSession();
+                  this.authService.clearSession(false);
   
                   return EMPTY;
                 })
@@ -70,7 +70,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
 		return request.clone({
 			setHeaders: {
-				Authorization: `Bearer ${accessToken}`
+				authorization: `Bearer ${accessToken}`
 			}
 		});
 	}

@@ -18,11 +18,13 @@ export class AuthService {
         this.jwtHelperService = new JwtHelperService();
     }
 
-    clearSession(): void {
+    clearSession(goToAuth: boolean = true): void {
 		this.removeAccessToken();
 		this.removeRefreshToken();
 
-		location.replace(`${location.origin}/auth`);
+		if(goToAuth) {
+			location.replace(`${location.origin}/auth`);
+		}
 	}
 
     isAccessTokenExpired(token?: string): boolean {
